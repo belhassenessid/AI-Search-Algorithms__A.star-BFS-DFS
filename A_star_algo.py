@@ -20,7 +20,7 @@ class Taquin :
         return self.g + self.h
 
 
-# Définissons une fonction qui retourne les coordonnées (ligne,col) d'une taquin dans un taquin 3*3 donné
+# Définissons une fonction qui retourne les coordonnées (ligne,col) d'une case dans un taquin 3*3 donné
 def coordonnees(taquin, cellule) :
     for ligne in range(3) :
         if cellule in taquin[ligne] :
@@ -30,7 +30,7 @@ def coordonnees(taquin, cellule) :
 #Définissons une fonction qui renvoie la valeur de l'heuristique H qui est l'estimation à vol d'oiseau de la distance
 # à quelle se trouve le but (calculé par Manhattan algo: H=|xf-x0|+|yf-y0|)
 #C'est-à-dire le coût total du déplacement de chaque case de son état actuel dans un taquin i à son état final dans
-# le taquin f, en négligeant la présence d'autres cases (murs) entre le chemin des 2 états qui peuvent empêcher ce mouvement
+# le taquin f, en négligeant la présence d'autres cases (murs) entre le chemin des 2 états qui peuvent empecher ce mouvement
 def cout_heuristique(etat_courant) :
     cout = 0
     for ligne in range(3) :
@@ -40,6 +40,7 @@ def cout_heuristique(etat_courant) :
     return cout
 
 #Définissons une fonction qui renvoie une liste des nouveaux états des taquins après avoir appliqué toutes les opérations possibles {U,D,R,L} sur un taquin donné
+# operations(taquin_père) --> liste(taquins_fils)
 def appliquer_operations(taquin) :
     liste_taquins_transformes = []
     pos_vide = coordonnees(taquin.matrice_courante, 0)
@@ -57,7 +58,7 @@ def appliquer_operations(taquin) :
     return liste_taquins_transformes
 
 # Définissons une fonction qui renvoie le meilleur taquin de l'ensemble des taquins fils -meilleur c.-à-d plus petite f(n)=g(n)+h(n)
-def meilleur_taquin(open_liste) : #input == dictionnaire des taquins à traiter de la forme {str(matrice):Objet Taquin(),...}
+def meilleur_taquin(open_liste) : #input == dictionnaire des taquins prets à traiter de la forme {str(matrice):Objet Taquin(),...}
     first_iter = True
 
     for taquin in open_liste.values() :
@@ -69,7 +70,7 @@ def meilleur_taquin(open_liste) : #input == dictionnaire des taquins à traiter 
 
 # Définissons une fonction qui renvoie le chemin/la branche des taquins choisis de l'état initial à l'état final
 # une liste contenant des dictionnaires {'operation':opération effectuée, 'taquin':matrice résultant}
-def chemin(closed_liste) : #input == dictionnaire des taquins deja choisis de la forme {str(matrice):Objet Taquin(),...}
+def chemin(closed_liste) : #input == dictionnaire des taquins deja choisis et parcourus de la forme {str(matrice):Objet Taquin(),...}
     taquin = closed_liste[str(etat_final)]
     branche = list()
 
