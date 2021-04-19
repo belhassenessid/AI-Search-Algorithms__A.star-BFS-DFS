@@ -46,7 +46,8 @@ if __name__ == '__main__' :
 
     branche = main([[1, 2, 3], [4, 5, 0], [6, 7, 8]])
 
-    print('coût total (steps) : ', len(branche) - 1,end='\n')
+    etapes=len(branche)-1
+    print('coût total (steps) : ',etapes ,end='\n')
     print(tiret + tiret + croisement_droit, "Taquin Entré", croisement_gauche + tiret + tiret)
     for noeud in branche :
         if noeud['operation'] != '' :
@@ -63,4 +64,4 @@ if __name__ == '__main__' :
         dessiner_taquin(noeud['taquin'])
         print()
 
-    print(tiret + tiret + croisement_droit, 'FIN Recherche A*', croisement_gauche + tiret + tiret)
+    print(tiret + tiret + croisement_droit, 'FIN Recherche A* avec {} étapes'.format(etapes), croisement_gauche + tiret + tiret)
