@@ -94,7 +94,7 @@ def main(puzzle_initial) : #input == matrice (liste de 3 listes de 3 entiers ent
     # un dictionnaire sous la forme {clé0:valeur0,...} avec str(matrice) comme clé, un Objet Taquin comme valeur
     open_liste = {str(puzzle_initial) : Taquin(puzzle_initial, puzzle_initial, 0, cout_heuristique(puzzle_initial), "")}
 
-    # Soit le close_set qui stocke
+    #Soit le close_liste qui stocke les taquins déjà choisis et traités
     closed_liste = {}
 
     while True :
