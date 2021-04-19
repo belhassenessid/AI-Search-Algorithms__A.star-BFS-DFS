@@ -71,11 +71,11 @@ if __name__ == '__main__' :
     # Fin Affichage terminal.
 
     #Tkinter graphic interface
-    window = tk.Tk()
-    window['bg']='white'
-    window.title (' Taquin resolution IA')
-    can=tk.Canvas( width=500,height=500,bg='white')
-    can.pack( side =tk.TOP, padx =20, pady =20)
+    # window = tk.Tk()
+    # window['bg']='white'
+    # window.title (' Taquin resolution IA')
+    # can=tk.Canvas( width=500,height=500,bg='white')
+    # can.pack( side =tk.TOP, padx =20, pady =20)
     # fenetre['bg']='white'
     # fenetre.title (' Taquin resolution IA')
 
