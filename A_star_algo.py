@@ -4,7 +4,7 @@ etat_final = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]  # etat but, soit le 0 qui symbol
 operateurs_de_transformations = {"U" : [-1, 0], "D" : [1, 0], "L" : [0, -1], "R" : [0, 1]}
 # + l'état initial sera entré dans le module Main.py, le test but est implémenté ci-dessus dans la fonction main()
 
-# Définissons une classe taquin, caractérisée par sa matrice de valeurs, la matrice du taquin antécédent, l'operation resultante et les valeurs de l'algorithme A*, F=G+H.
+# Définissons une classe taquin (noeud), caractérisée par sa matrice de valeurs, la matrice du taquin antécédent, l'operation resultante et les valeurs de l'algorithme A*, F=G+H.
 class Taquin :
     # Constructeur de la classe
     def __init__(self, matrice_courante, matrice_precedente, g, h, operation) :
