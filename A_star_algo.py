@@ -71,21 +71,21 @@ def meilleur_taquin(open_liste) : #input == dictionnaire des taquins à traiter 
 # une liste contenant des dictionnaires {'operation':opération effectuée, 'taquin':matrice résultant}
 def chemin(closed_liste) : #input == dictionnaire des taquins deja choisis de la forme {str(matrice):Objet Taquin(),...}
     taquin = closed_liste[str(etat_final)]
-    branch = list()
+    branche = list()
 
     while taquin.operation :
-        branch.append({
+        branche.append({
             'operation' : taquin.operation,
             'taquin' : taquin.matrice_courante
         })
         taquin = closed_liste[str(taquin.matrice_precedente)]
-    branch.append({
+    branche.append({
         'operation' : 'taquin initial sans opération de transformation',
         'taquin' : taquin.matrice_courante
     })
-    branch.reverse()
+    branche.reverse()
 
-    return branch
+    return branche
 
 
 def main(puzzle_initial) : #input == matrice (liste de 3 listes de 3 entiers entre 0 et 8)
@@ -117,5 +117,3 @@ def main(puzzle_initial) : #input == matrice (liste de 3 listes de 3 entiers ent
 
         #VI. Supprimer le taquin père (taquin_a_traiter) de la liste open
         del open_liste[str(taquin_a_traiter.matrice_courante)]
-
-

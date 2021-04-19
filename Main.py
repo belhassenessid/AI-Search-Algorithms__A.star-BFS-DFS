@@ -44,24 +44,23 @@ def dessiner_taquin(matrice) :
 if __name__ == '__main__' :
 # condition pour empecher l'exécution de cette partie de code, en dehors de ce module 'Main.py'
 
-    br = main([[1,2,3],[4,5,0],[6,7,8]])
+    branche = main([[1, 2, 3], [4, 5, 0], [6, 7, 8]])
 
-    print('total steps : ', len(br) - 1)
-    print()
-    print(tiret + tiret + croisement_droit, "INPUT", croisement_gauche + tiret + tiret)
-    for b in br :
-        if b['operation'] != '' :
-            letter = ''
-            if b['operation'] == 'U' :
-                letter = 'UP'
-            elif b['operation'] == 'R' :
-                letter = "RIGHT"
-            elif b['operation'] == 'L' :
-                letter = 'LEFT'
-            elif b['operation'] == 'D' :
-                letter = 'DOWN'
+    print('coût total (steps) : ', len(branche) - 1,end='\n')
+    print(tiret + tiret + croisement_droit, "Taquin Entré", croisement_gauche + tiret + tiret)
+    for noeud in branche :
+        if noeud['operation'] != '' :
+            letter = 'avant opération'
+            if noeud['operation'] == 'U' :
+                letter = 'En Haut'
+            elif noeud['operation'] == 'R' :
+                letter = "À Droite"
+            elif noeud['operation'] == 'L' :
+                letter = 'À Gauche'
+            elif noeud['operation'] == 'D' :
+                letter = 'Vers le Bas'
             print(tiret + tiret + croisement_droit, letter, croisement_gauche + tiret + tiret)
-        dessiner_taquin(b['taquin'])
+        dessiner_taquin(noeud['taquin'])
         print()
 
-    print(tiret + tiret + croisement_droit, 'ABOVE IS THE OUTPUT', croisement_gauche + tiret + tiret)
+    print(tiret + tiret + croisement_droit, 'FIN Recherche A*', croisement_gauche + tiret + tiret)
