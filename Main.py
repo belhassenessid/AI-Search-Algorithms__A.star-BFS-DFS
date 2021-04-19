@@ -1,4 +1,5 @@
 from A_star_algo import main
+import tkinter  as tk
 from colorama import Fore, Back, Style  # Fore et Back pour colorer l'écriture et son font, Style à son style
 
 
@@ -70,5 +71,13 @@ if __name__ == '__main__' :
     # Fin Affichage terminal.
 
     #Tkinter graphic interface
+    window = tk.Tk()
+    window['bg']='white'
+    window.title (' Taquin resolution IA')
+    can=tk.Canvas( width=500,height=500,bg='white')
+    can.pack( side =tk.TOP, padx =20, pady =20)
+    # fenetre['bg']='white'
+    # fenetre.title (' Taquin resolution IA')
 
+    window.mainloop()
     #Fin Tkinter graphic interface.
