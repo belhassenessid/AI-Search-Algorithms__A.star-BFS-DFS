@@ -45,7 +45,7 @@ def dessiner_taquin(matrice) :
 if __name__ == '__main__' :
 # condition pour empecher l'exécution de cette partie de code, en dehors de ce module 'Main.py'
 
-    branche = main([[1, 2, 3], [4, 5, 0], [6, 7, 8]])
+    branche = main([[1, 2, 3], [4, 5, 6], [0, 7, 8]])
 
     etapes=len(branche)-1
 
@@ -79,5 +79,5 @@ if __name__ == '__main__' :
     # fenetre['bg']='white'
     # fenetre.title (' Taquin resolution IA')
 
-    window.mainloop()
+    #window.mainloop()
     #Fin Tkinter graphic interface.
