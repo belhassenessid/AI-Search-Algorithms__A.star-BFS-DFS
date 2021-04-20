@@ -49,6 +49,7 @@ if __name__ == '__main__' :
 
     etapes=len(branche)-1
 
+
     # Affichage dans le terminal
     print('coût total (steps) : ',etapes ,end='\n')
     print(tiret + tiret + croisement_droit, "Taquin Entré", croisement_gauche + tiret + tiret)
