@@ -1,5 +1,4 @@
-# Created by .ignore support plugin (hsz.mobi)
-### Python template
+### Python Pycharm ignore template
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -149,3 +148,5 @@ com_crashlytics_export_strings.xml
 crashlytics.properties
 crashlytics-build.properties
 fabric.properties
+
+# Created by .ignore support plugin (hsz.mobi)
