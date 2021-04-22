@@ -4,6 +4,12 @@ from random import shuffle
 from time import sleep
 from colorama import Fore, Back, Style  # Fore et Back pour colorer l'écriture et son font, Style à son style
 
+# Une mainWindow est définie dans le programme principal, elle affiche l'entrée par défaut [0..8] qui peut
+# être mélangée avec le bouton (Mélanger), puis vous choisissez l'algorithme de recherche à appliquer, vous cliquez sur
+# (DFS), (BFS) ou (A*) en suite la fonction appropriée sera appelée pour créer une nouvelle fenêtre dans laquelle nous
+# avons d'abord l'entrée par défaut ou melangé, et un bouton (suivant) pour afficher le nœud suivant (en affichant le
+# numéro du nœud et le nombre de déplacements n)
+
 global n,branche,etapes
 
 
@@ -51,7 +57,6 @@ def melanger():
     L = list(i for j in input_defaut for i in j)
     shuffle(L)
     input_defaut= [[L[0],L[1],L[2]],[L[3],L[4],L[5]],[L[6],L[7],L[8]]]
-    print(input_defaut,type(L[0]))
     for i in range(9) :
         ListeT = list(i for j in input_defaut for i in j)
         ligne, col = i // 3, i % 3
@@ -71,12 +76,7 @@ def next():
 
 
 def solve_A_star():
-    global branche
-    global etapes
-    global n
-    global img
-    global can2
-    global texte
+    global branche,etapes,img,can2,texte,n
     n=0
     branche = main(input_defaut)
     etapes = len(branche) - 1
