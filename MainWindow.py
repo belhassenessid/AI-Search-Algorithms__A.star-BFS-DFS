@@ -67,12 +67,15 @@ def next():
     n+=1
 
     for i in range(9) :
-        ListeT = list(i for j in branche[n]['taquin'] for i in j)
-        ligne, col = i // 3, i % 3
-        texte.delete("1.0", tk.END)
-        texte.insert(tk.END, "Nœud{}/{}, {} déplacement effectué parmis {}".format(n+1,etapes+1,n,etapes))
-        texte.pack(side=tk.LEFT)
-        can2.create_image(30 + 200 * col, 30 + 200 * ligne, anchor=tk.NW, image=img[ListeT[i]])
+        if n>etapes:
+            break
+        else:
+            ListeT = list(i for j in branche[n]['taquin'] for i in j)
+            ligne, col = i // 3, i % 3
+            texte.delete("1.0", tk.END)
+            texte.insert(tk.END, "Nœud{}/{}, {} déplacement effectué parmis {}".format(n+1,etapes+1,n,etapes))
+            texte.pack(side=tk.LEFT)
+            can2.create_image(30 + 200 * col, 30 + 200 * ligne, anchor=tk.NW, image=img[ListeT[i]])
 
 
 def solve_A_star():
