@@ -53,10 +53,13 @@ def appliquer_operations(taquin,open,closed) :
             # Switcher les deux cases
             new_matrix[pos_vide[0]][pos_vide[1]] = taquin.matrice_courante[new_pos[0]][new_pos[1]]
             new_matrix[new_pos[0]][new_pos[1]] = 0
-            # Ajouter un Objet Taquin à la liste des taquins transformées
-            if str(new_matrix) not in closed.keys()or \
-            str(t.matrice_courante) in open_liste.keys() and open_liste[str(t.matrice_courante)].f() < t.f() :
-                open[str(new_matrix)] = Taquin(new_matrix, taquin.matrice_courante, operation) 
+            # Ajouter un Objet Taquin à la liste open avec des conditions:
+                #il ne sert à rien de traiter un taquin t si:
+                    #c1. il est déjà traités (se trouve dans closed_liste) -peut déclencher une boucle infinie-
+                    #c2. il y a un taquin de même matrice que t qui sera traitée (se trouve deja dans open_liste), mais de meilleur f(n) que t.
+            if not ( str(new_matrix) in closed.keys() or \
+            str(new_matrix) in open.keys() and open[str(new_matrix)].f() < taquin.f() ) :
+                open[str(new_matrix)] = Taquin(new_matrix, taquin.matrice_courante,taquin.g+1,cout_heuristique(new_matrix), operation)
 
 
 # Définissons une fonction qui renvoie le meilleur taquin de l'ensemble des taquins fils -meilleur c.-à-d plus petite f(n)=g(n)+h(n)
@@ -106,10 +109,10 @@ def main(puzzle_initial) : #input == matrice (liste de 3 listes de 3 entiers ent
         closed_liste[str(taquin_a_traiter.matrice_courante)] = taquin_a_traiter #II. ajouter ce taquin à la liste closed
 
         if taquin_a_traiter.matrice_courante == etat_final : #III. Test-but
-            #print(open_liste.keys(), "**", closed_liste.keys())
+            #print("fin ",len(open_liste)-1+len(closed_liste))
             return chemin(closed_liste)
 
-        appliquer_operations(taquin_a_traiter,open_liste,closed_liste) #IV. étendre ce taquin père dans une Liste_fils
+        appliquer_operations(taquin_a_traiter,open_liste,closed_liste) #IV. étendre ce taquin père dans open
         
         #V. Supprimer le taquin père (taquin_a_traiter) de la liste open
         del open_liste[str(taquin_a_traiter.matrice_courante)]
