@@ -42,7 +42,7 @@ def cout_heuristique(etat_courant) :
 
 #Définissons une fonction qui renvoie une liste des nouveaux états des taquins après avoir appliqué toutes les opérations possibles {U,D,R,L} sur un taquin donné
 # operations(taquin_père) --> liste(taquins_fils)
-def appliquer_operations(taquin) :
+def appliquer_operations(taquin,open,closed) :
     liste_taquins_transformes = []
     pos_vide = coordonnees(taquin.matrice_courante, 0)
 
@@ -54,9 +54,10 @@ def appliquer_operations(taquin) :
             new_matrix[pos_vide[0]][pos_vide[1]] = taquin.matrice_courante[new_pos[0]][new_pos[1]]
             new_matrix[new_pos[0]][new_pos[1]] = 0
             # Ajouter un Objet Taquin à la liste des taquins transformées
-            liste_taquins_transformes.append(Taquin(new_matrix, taquin.matrice_courante, taquin.g + 1, cout_heuristique(new_matrix), operation))
+            if str(new_matrix) not in closed.keys()or \
+            str(t.matrice_courante) in open_liste.keys() and open_liste[str(t.matrice_courante)].f() < t.f() :
+                open[str(new_matrix)] = Taquin(new_matrix, taquin.matrice_courante, operation) 
 
-    return liste_taquins_transformes
 
 # Définissons une fonction qui renvoie le meilleur taquin de l'ensemble des taquins fils -meilleur c.-à-d plus petite f(n)=g(n)+h(n)
 def meilleur_taquin(open_liste) : #input == dictionnaire des taquins prets à traiter de la forme {str(matrice):Objet Taquin(),...}
@@ -108,17 +109,8 @@ def main(puzzle_initial) : #input == matrice (liste de 3 listes de 3 entiers ent
             #print(open_liste.keys(), "**", closed_liste.keys())
             return chemin(closed_liste)
 
-        taquins_fils = appliquer_operations(taquin_a_traiter) #IV. étendre ce taquin père dans une Liste_fils
-        #V. Ajouter les fils à la liste open pour être traités -avec certains conditions-:
-        for t in taquins_fils :
-            #conditions : on doit pas ajoutés tous les taquins à la liste open pour être traités :: car il ne sert à rien de traiter un taquin t:
-            # 1. déjà traités (se trouve dans closed_liste) -peut déclencher une boucle infinie-
-            # 2. s'il y a un taquin de même matrice que t, mais de meilleur f(n) que t, qui sera traitée (se trouve deja dans open_liste)
-            if str(t.matrice_courante) in closed_liste.keys() or \
-                str(t.matrice_courante) in open_liste.keys() and open_liste[str(t.matrice_courante)].f() < t.f() :
-                continue
-            open_liste[str(t.matrice_courante)] = t #si les conditions de traitement sont correctes, on ajoute le fils à la liste open
-
-        #VI. Supprimer le taquin père (taquin_a_traiter) de la liste open
+        appliquer_operations(taquin_a_traiter,open_liste,closed_liste) #IV. étendre ce taquin père dans une Liste_fils
+        
+        #V. Supprimer le taquin père (taquin_a_traiter) de la liste open
         del open_liste[str(taquin_a_traiter.matrice_courante)]
         #print(open_liste.keys(), "**", closed_liste.keys())
