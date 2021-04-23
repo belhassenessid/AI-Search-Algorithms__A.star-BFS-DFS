@@ -150,9 +150,9 @@ for i in range(9):
 
 #Initialisation de la zone Canvas, placer les images de l'input par defaut dans la zone Canvas
 
-input_defaut = [[2, 8, 3],
-                    [1, 6, 4],
-                    [7, 0, 5]]
+input_defaut = [[1, 2, 3],
+                    [8, 6, 0],
+                    [7, 5, 4]]
 
 for i in range(9) :
     ListeT = list(i for j in input_defaut for i in j)

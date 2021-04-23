@@ -104,7 +104,6 @@ def main(puzzle_initial) : #input == matrice (liste de 3 listes de 3 entiers ent
         closed_liste[str(taquin_a_traiter.matrice_courante)] = taquin_a_traiter #II. ajouter ce taquin à la liste closed
 
         if taquin_a_traiter.matrice_courante == etat_final : #III. Test-but
-            print("**cloded", len(closed_liste), " **open** ", len(open_liste))
             return chemin(closed_liste)
 
         taquins_fils = appliquer_operations(taquin_a_traiter) #IV. étendre ce taquin père dans une Liste_fils
