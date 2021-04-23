@@ -99,7 +99,6 @@ def main(puzzle_initial) : #input == matrice (liste de 3 listes de 3 entiers ent
     closed_liste = {}
 
     while True :
-        print("**cloded", len(closed_liste), " **open** ", len(open_liste))
         taquin_a_traiter = meilleur_taquin(open_liste) #I. choisir le taquin à étendre, pour continuer dans cette branche du meilleur f(n)
         closed_liste[str(taquin_a_traiter.matrice_courante)] = taquin_a_traiter #II. ajouter ce taquin à la liste closed
 
