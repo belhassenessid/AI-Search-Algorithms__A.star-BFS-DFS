@@ -29,14 +29,15 @@ def coordonnees(taquin, cellule) :
 
 #Définissons une fonction qui renvoie la valeur de l'heuristique H qui est l'estimation à vol d'oiseau de la distance
 # à quelle se trouve le but (calculé par Manhattan algo: H=|xf-x0|+|yf-y0|)
-#C'est-à-dire le coût total du déplacement de chaque case de son état actuel dans un taquin i à son état final dans
+#C'est-à-dire le coût total du déplacement de chaque case -sauf la case vide- de son état actuel dans un taquin i à son état final dans
 # le taquin f, en négligeant la présence d'autres cases (murs) entre le chemin des 2 états qui peuvent empecher ce mouvement
 def cout_heuristique(etat_courant) :
     cout = 0
     for ligne in range(3) :
         for col in range(3) :
-            (ligne_final, col_final) = coordonnees(etat_final, etat_courant[ligne][col]) # Coordonnées de la case à l'état final du taquin
-            cout += abs(ligne - ligne_final) + abs(col - col_final) # Formule de distance de Manhattan
+            if etat_courant[ligne][col] != 0: #sauf la case vide
+                (ligne_final, col_final) = coordonnees(etat_final, etat_courant[ligne][col])  # Coordonnées de la case à l'état final du taquin
+                cout += abs(ligne - ligne_final) + abs(col - col_final)  # Formule de distance de Manhattan
     return cout
 
 #Définissons une fonction qui renvoie une liste des nouveaux états des taquins après avoir appliqué toutes les opérations possibles {U,D,R,L} sur un taquin donné
