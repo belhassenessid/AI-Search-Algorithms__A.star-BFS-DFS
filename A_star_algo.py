@@ -1,6 +1,6 @@
 from copy import deepcopy
 
-etat_final = [[1, 2, 3], [4, 5, 6], [7, 8, 0]]  # etat but, soit le 0 qui symbolise la case vide
+etat_final = [[1, 2, 3], [8, 0, 4], [7, 6, 5]]  # etat but, soit le 0 qui symbolise la case vide
 operateurs_de_transformations = {"U" : [-1, 0], "D" : [1, 0], "L" : [0, -1], "R" : [0, 1]}
 # + l'état initial sera entré dans le module MainWindow.py, le test but est implémenté ci-dessus dans la fonction main()
 
@@ -99,10 +99,12 @@ def main(puzzle_initial) : #input == matrice (liste de 3 listes de 3 entiers ent
     closed_liste = {}
 
     while True :
+        print("**cloded", len(closed_liste), " **open** ", len(open_liste))
         taquin_a_traiter = meilleur_taquin(open_liste) #I. choisir le taquin à étendre, pour continuer dans cette branche du meilleur f(n)
         closed_liste[str(taquin_a_traiter.matrice_courante)] = taquin_a_traiter #II. ajouter ce taquin à la liste closed
 
         if taquin_a_traiter.matrice_courante == etat_final : #III. Test-but
+            print("**cloded", len(closed_liste), " **open** ", len(open_liste))
             return chemin(closed_liste)
 
         taquins_fils = appliquer_operations(taquin_a_traiter) #IV. étendre ce taquin père dans une Liste_fils
