@@ -2,16 +2,18 @@
 
 ```
 Algorithme de recherche A* (matrice):
-    1. Choisir le taquin à étendre, pour continuer dans cette branche du meilleur f(n)=g(n)+h(n).
-    2. Ajouter ce taquin père à closed_liste.
-    3. Test-but: si la matrice de ce taquin père == état final --> succès --> return(chemin)
+    0. initialise open avec le taquin input initial et closed vide
+    Repeter: 
+        1. Choisir le taquin à étendre, pour continuer dans cette branche du meilleur f(n)=g(n)+h(n) parmis open.
+        2. Ajouter ce taquin père à closed_liste.
+        3. Test-but: si la matrice de ce taquin père == état final --> succès --> return(chemin)
                     si non :
-    4. Ajouter les fils à la liste open pour être traités -avec conditions:
+        4. Ajouter les fils à la liste open pour être traités -avec conditions:
             il ne sert à rien de traiter un taquin t si:
             c1. il est déjà traités (se trouve dans closed_liste) -peut déclencher une boucle infinie-
             c2. il y a un taquin de même matrice que t qui sera traitée (se trouve deja dans open_liste),
                        mais de meilleur f(n) que t.
-    5. Supprimer le taquin père de open_liste.
+        5. Supprimer le taquin père de open_liste.
 ```
 **Avec:**
 
