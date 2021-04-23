@@ -99,11 +99,13 @@ def main(puzzle_initial) : #input == matrice (liste de 3 listes de 3 entiers ent
     #Soit le close_liste qui stocke les taquins déjà choisis et traités
     closed_liste = {}
 
+    #print("initial ",open_liste.keys(),"**",closed_liste.keys())
     while True :
         taquin_a_traiter = meilleur_taquin(open_liste) #I. choisir le taquin à étendre, pour continuer dans cette branche du meilleur f(n)
         closed_liste[str(taquin_a_traiter.matrice_courante)] = taquin_a_traiter #II. ajouter ce taquin à la liste closed
 
         if taquin_a_traiter.matrice_courante == etat_final : #III. Test-but
+            #print(open_liste.keys(), "**", closed_liste.keys())
             return chemin(closed_liste)
 
         taquins_fils = appliquer_operations(taquin_a_traiter) #IV. étendre ce taquin père dans une Liste_fils
@@ -119,3 +121,4 @@ def main(puzzle_initial) : #input == matrice (liste de 3 listes de 3 entiers ent
 
         #VI. Supprimer le taquin père (taquin_a_traiter) de la liste open
         del open_liste[str(taquin_a_traiter.matrice_courante)]
+        #print(open_liste.keys(), "**", closed_liste.keys())
