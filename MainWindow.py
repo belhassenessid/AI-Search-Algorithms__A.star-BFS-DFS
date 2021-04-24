@@ -90,7 +90,7 @@ def solve_A_star():
     branche,Nbr_total_noeuds_explores = A_star_algo.main(input_defaut)
     etapes = len(branche) - 1
     # Affichage dans le terminal
-    print('Chemin-solution de {} noeuds et de coût de deplacement = {}',etapes+1 ,etapes, end='\n')
+    print('Chemin-solution de {} noeuds',etapes+1 ,end='\n')
     print(tiret + tiret + croisement_droit, "Taquin Entré", croisement_gauche + tiret + tiret)
     for noeud in branche :
         if noeud['operation'] != '' :
