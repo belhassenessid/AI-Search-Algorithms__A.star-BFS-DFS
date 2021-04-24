@@ -1,8 +1,6 @@
-import A_star_algo
-import BFS_algo
+from Algorithms import A_star_algo, BFS_algo
 import tkinter  as tk
 from random import shuffle
-from time import sleep
 from colorama import Fore, Back, Style  # Fore et Back pour colorer l'écriture et son font, Style à son style
 
 # Une mainWindow est définie dans le programme principal, elle affiche l'entrée par défaut [0..8] qui peut
@@ -95,7 +93,7 @@ def solve(algo):
         branche_solution, Nbr_total_noeuds_explores = A_star_algo.main(input_defaut)
     elif algo=='BFS':
         branche_solution, Nbr_total_noeuds_explores = BFS_algo.main(input_defaut)
-
+        Nbr_total_noeuds_explores-=1
     etapes_solution = len(branche_solution) - 1
     # Affichage dans le terminal
     print('Chemin-solution de {} noeuds', etapes_solution + 1, end='\n')
