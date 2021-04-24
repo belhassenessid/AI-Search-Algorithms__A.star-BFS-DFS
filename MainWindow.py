@@ -10,7 +10,7 @@ from colorama import Fore, Back, Style  # Fore et Back pour colorer l'écriture 
 # avons d'abord l'entrée par défaut ou melangé, et un bouton (suivant) pour afficher le nœud suivant (en affichant le
 # numéro du nœud et le nombre de déplacements n)
 
-global n,branche,etapes
+global n,branche,etapes,Nbr_total_noeuds_explores
 
 
 # Définissons les éléments de décoration graphiques dans le Terminal (couleurs, styles, formes et matrices) :
@@ -72,19 +72,24 @@ def next():
         else:
             ListeT = list(i for j in branche[n]['taquin'] for i in j)
             ligne, col = i // 3, i % 3
-            texte.delete("1.0", tk.END)
-            texte.insert(tk.END, "Nœud{}/{}, {} déplacement effectué parmis {}".format(n+1,etapes+1,n,etapes))
-            texte.pack(side=tk.LEFT)
+            if n==etapes:
+                texte.delete("1.0", tk.END)
+                texte.insert(tk.END,"FIN, C'est le dernier nœud BUT {}/{} du chemin-solution ||\n{}+1 total de nœuds explorés à la fin de l'exécution".format(n,etapes,Nbr_total_noeuds_explores))
+                texte.pack(side=tk.LEFT)
+            else:
+                texte.delete("1.0", tk.END)
+                texte.insert(tk.END,"C'est le nœud {}/{} du chemin-solution ||\n{}+1 nœuds à explorer au total pour arriver au but".format(n,etapes,Nbr_total_noeuds_explores))
+                texte.pack(side=tk.LEFT)
             can2.create_image(30 + 200 * col, 30 + 200 * ligne, anchor=tk.NW, image=img[ListeT[i]])
 
 
 def solve_A_star():
-    global branche,etapes,img,can2,texte,n
+    global branche,etapes,img,can2,texte,n,Nbr_total_noeuds_explores
     n=0
-    branche = main(input_defaut)
+    branche,Nbr_total_noeuds_explores = main(input_defaut)
     etapes = len(branche) - 1
     # Affichage dans le terminal
-    print('coût total (steps) : ', etapes, end='\n')
+    print('Chemin-solution de {} noeuds et de coût de deplacement = {}',etapes+1 ,etapes, end='\n')
     print(tiret + tiret + croisement_droit, "Taquin Entré", croisement_gauche + tiret + tiret)
     for noeud in branche :
         if noeud['operation'] != '' :
@@ -101,7 +106,7 @@ def solve_A_star():
         dessiner_taquin(noeud['taquin'])
         print()
 
-    print(tiret + tiret + croisement_droit, 'FIN Recherche A* avec {} étapes'.format(etapes),
+    print(tiret + tiret + croisement_droit, 'FIN Rech A* | {}+1 noeuds explorés en total | chemin-solution ci-dessus'.format(Nbr_total_noeuds_explores-1),
           croisement_gauche + tiret + tiret)
     # Fin Affichage terminal.
     mainWindow.destroy()
@@ -119,9 +124,9 @@ def solve_A_star():
     for i in range(9) :
         img.append(tk.PhotoImage(file="./img/" + str(i) + ".png"))
     #Noeud && next
-    tk.Button(text='-Nœud suivant->',font=("Courier New",11),relief=tk.FLAT,command=next).pack(side=tk.RIGHT)
-    texte=tk.Text(font=("Courier New", 11),width=45,height=1)
-    texte.insert(tk.END, "Nœud1 initial, 0 déplacement")
+    tk.Button(text='-Nœud-solution suivant->',font=("Courier New",11),relief=tk.FLAT,command=next).pack(side=tk.RIGHT)
+    texte=tk.Text(font=("Courier New", 11),width=51,height=3)
+    texte.insert(tk.END, "C'est le nœud initial 1/{} du chemin-solution ||\n{}+1 nœuds à explorer au total pour arriver au but".format(etapes,Nbr_total_noeuds_explores))
     texte.pack(side=tk.LEFT)
     for i in range(9) :
         ListeT = list(i for j in branche[0]['taquin'] for i in j)

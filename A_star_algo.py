@@ -110,7 +110,7 @@ def main(puzzle_initial) : #input == matrice (liste de 3 listes de 3 entiers ent
 
         if taquin_a_traiter.matrice_courante == etat_final : #III. Test-but
             #print("fin ",len(open_liste)-1+len(closed_liste))
-            return chemin(closed_liste)
+            return chemin(closed_liste),len(open_liste)-1+len(closed_liste)
 
         appliquer_operations(taquin_a_traiter,open_liste,closed_liste) #IV. étendre ce taquin père dans open
         
