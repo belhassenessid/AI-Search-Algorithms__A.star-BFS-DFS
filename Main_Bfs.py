@@ -1,4 +1,4 @@
-from BFS import main
+from BFS_algo import main
 #from tkinter import *
 from colorama import Fore, Back, Style  # Fore et Back pour colorer l'écriture et son font, Style à son style
 
@@ -45,15 +45,15 @@ def dessiner_taquin(matrice) :
 if __name__ == '__main__' :
 # condition pour empecher l'exécution de cette partie de code, en dehors de ce module 'Main.py'
 
-    branche = main([[1, 2, 3], [8, 6, 0], [7, 5, 4]])
+    branche_solution = main([[1, 2, 3], [8, 6, 0], [7, 5, 4]])
 
-    etapes=len(branche)-1
+    etapes_solution= len(branche_solution) - 1
 
 
     # Affichage dans le terminal
-    print('coût total (steps) : ',etapes ,end='\n')
+    print('coût total (steps) : ', etapes_solution, end='\n')
     print(tiret + tiret + croisement_droit, "Taquin Entré", croisement_gauche + tiret + tiret)
-    for noeud in branche :
+    for noeud in branche_solution :
         if noeud['operation'] != '' :
             letter = 'avant opération'
             if noeud['operation'] == 'U' :
@@ -68,7 +68,7 @@ if __name__ == '__main__' :
         dessiner_taquin(noeud['taquin'])
         print()
 
-    print(tiret + tiret + croisement_droit, 'FIN Recherche BFS avec {} étapes'.format(etapes), croisement_gauche + tiret + tiret)
+    print(tiret + tiret + croisement_droit, 'FIN Recherche BFS avec {} étapes'.format(etapes_solution), croisement_gauche + tiret + tiret)
     # Fin Affichage terminal.
 
     #Tkinter graphic interface

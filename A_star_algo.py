@@ -14,7 +14,7 @@ class Taquin :
         self.h = h  # Coût heuristique estimé, du taquin n --> au taquin à l'etat final (calculé par la "distance de Manhattan")
         self.operation = operation
 
-    # L'agorithme de recherche A* sélectionne le chemin qui minimise la fonction: f(taquin) = G(taquin)+H(taquin)
+    # L'agorithme de recherche A* sélectionne le chemin_solution qui minimise la fonction: f(taquin) = G(taquin)+H(taquin)
     # définissons une methode qui calcule ce paramètre
     def f(self) :
         return self.g + self.h
@@ -30,7 +30,7 @@ def coordonnees(taquin, cellule) :
 #Définissons une fonction qui renvoie la valeur de l'heuristique H qui est l'estimation à vol d'oiseau de la distance
 # à quelle se trouve le but (calculé par Manhattan algo: H=|xf-x0|+|yf-y0|)
 #C'est-à-dire le coût total du déplacement de chaque case -sauf la case vide- de son état actuel dans un taquin i à son état final dans
-# le taquin f, en négligeant la présence d'autres cases (murs) entre le chemin des 2 états qui peuvent empecher ce mouvement
+# le taquin f, en négligeant la présence d'autres cases (murs) entre le chemin_solution des 2 états qui peuvent empecher ce mouvement
 def cout_heuristique(etat_courant) :
     cout = 0
     for ligne in range(3) :
@@ -73,9 +73,9 @@ def meilleur_taquin(open_liste) : #input == dictionnaire des taquins prets à tr
             bestF = meilleur_taquin.f()
     return meilleur_taquin
 
-# Définissons une fonction qui renvoie le chemin/la branche des taquins choisis de l'état initial à l'état final
+# Définissons une fonction qui renvoie le chemin_solution/la branche_solution des taquins choisis de l'état initial à l'état final
 # une liste contenant des dictionnaires {'operation':opération effectuée, 'taquin':matrice résultant}
-def chemin(closed_liste) : #input == dictionnaire des taquins deja choisis et parcourus de la forme {str(matrice):Objet Taquin(),...}
+def chemin_solution(closed_liste) : #input == dictionnaire des taquins deja choisis et parcourus de la forme {str(matrice):Objet Taquin(),...}
     taquin = closed_liste[str(etat_final)]
     branche = list()
 
@@ -105,12 +105,12 @@ def main(puzzle_initial) : #input == matrice (liste de 3 listes de 3 entiers ent
 
     #print("initial ",open_liste.keys(),"**",closed_liste.keys())
     while True :
-        taquin_a_traiter = meilleur_taquin(open_liste) #I. choisir le taquin à étendre, pour continuer dans cette branche du meilleur f(n)
+        taquin_a_traiter = meilleur_taquin(open_liste) #I. choisir le taquin à étendre, pour continuer dans cette branche_solution du meilleur f(n)
         closed_liste[str(taquin_a_traiter.matrice_courante)] = taquin_a_traiter #II. ajouter ce taquin à la liste closed
 
         if taquin_a_traiter.matrice_courante == etat_final : #III. Test-but
             #print("fin ",len(open_liste)-1+len(closed_liste))
-            return chemin(closed_liste),len(open_liste)-1+len(closed_liste)
+            return chemin_solution(closed_liste), len(open_liste) - 1 + len(closed_liste)
 
         appliquer_operations(taquin_a_traiter,open_liste,closed_liste) #IV. étendre ce taquin père dans open
         

@@ -6,7 +6,7 @@ Algorithme de recherche A* (matrice):
     Repeter: 
         1. Choisir le taquin à étendre, pour continuer dans cette branche du meilleur f(n)=g(n)+h(n) parmis open.
         2. Ajouter ce taquin père à closed_liste.
-        3. Test-but: si la matrice de ce taquin père == état final --> succès --> return(chemin)
+        3. Test-but: si la matrice de ce taquin père == état final --> succès --> return(chemin_solution)
                     si non :
         4. Ajouter les fils à la liste open pour être traités -avec conditions:
             il ne sert à rien de traiter un taquin t si:

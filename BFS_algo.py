@@ -38,9 +38,9 @@ def appliquer_operations(taquin,open,closed) :
                 #si les conditions de traitement sont correctes, on ajoute le fils à la liste open
 
 
-# Définissons une fonction qui renvoie le chemin/la branche des taquins choisis de l'état initial à l'état final
+# Définissons une fonction qui renvoie le chemin_solution/la branche_solution des taquins choisis de l'état initial à l'état final
 # une liste contenant des dictionnaires {'operation':opération effectuée, 'taquin':matrice résultant}
-def chemin(closed_liste) : #input == dictionnaire des taquins deja choisis et parcourus de la forme {str(matrice):Objet Taquin(),...}
+def chemin_solution(closed_liste) : #input == dictionnaire des taquins deja choisis et parcourus de la forme {str(matrice):Objet Taquin(),...}
     taquin = closed_liste[str(etat_final)]
     branche = list()
 
@@ -55,7 +55,7 @@ def chemin(closed_liste) : #input == dictionnaire des taquins deja choisis et pa
         'taquin' : taquin.matrice_courante
     })
     branche.reverse()
-    #print(len(branche))
+    #print(len(branche_solution))
 
     return branche
 
@@ -75,7 +75,7 @@ def main(puzzle_initial) : #input == matrice (liste de 3 listes de 3 entiers ent
 
         closed_liste[str(taquin_a_traiter.matrice_courante)] = taquin_a_traiter #II. ajouter ce taquin à la liste closed
         if taquin_a_traiter.matrice_courante == etat_final :#III. Test-but
-            return chemin(closed_liste)
+            return chemin_solution(closed_liste), len(closed_liste)
 
         appliquer_operations(taquin_a_traiter,open_liste,closed_liste) #IV. étendre ce taquin père dans une Liste_fils
 
