@@ -1,4 +1,5 @@
-from A_star_algo import main
+import A_star_algo
+import BFS
 import tkinter  as tk
 from random import shuffle
 from time import sleep
@@ -86,7 +87,7 @@ def next():
 def solve_A_star():
     global branche,etapes,img,can2,texte,n,Nbr_total_noeuds_explores
     n=0
-    branche,Nbr_total_noeuds_explores = main(input_defaut)
+    branche,Nbr_total_noeuds_explores = A_star_algo.main(input_defaut)
     etapes = len(branche) - 1
     # Affichage dans le terminal
     print('Chemin-solution de {} noeuds et de coût de deplacement = {}',etapes+1 ,etapes, end='\n')
