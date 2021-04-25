@@ -1,5 +1,5 @@
 from copy import deepcopy
-import timeit,time
+import timeit
 
 etat_final = [[1, 2, 3], [8, 0, 4], [7, 6, 5]]  # etat but, soit le 0 qui symbolise la case vide
 operateurs_de_transformations = {"U" : [-1, 0], "D" : [1, 0], "L" : [0, -1], "R" : [0, 1]}
