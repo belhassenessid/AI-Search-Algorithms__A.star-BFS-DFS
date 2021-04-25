@@ -9,7 +9,7 @@ from colorama import Fore, Back, Style  # Fore et Back pour colorer l'écriture 
 # avons d'abord l'entrée par défaut ou melangé, et un bouton (suivant) pour afficher le nœud suivant (en affichant le
 # numéro du nœud et le nombre de déplacements n)
 
-global n, branche_solution, etapes_solution, Nbr_total_noeuds_explores
+global n, branche_solution, etapes_solution, Nbr_total_noeuds_explores, temps
 
 
 # Définissons les éléments de décoration graphiques dans le Terminal (couleurs, styles, formes et matrices) :
@@ -92,11 +92,11 @@ def solve(algo):
     global branche_solution, etapes_solution, img, can2, texte, n, Nbr_total_noeuds_explores
     n=0
     if algo=='A*':
-        branche_solution, Nbr_total_noeuds_explores = A_star_algo.main(input_defaut)
+        branche_solution, Nbr_total_noeuds_explores, temps = A_star_algo.main(input_defaut)
     elif algo=='BFS':
-        branche_solution, Nbr_total_noeuds_explores = BFS_algo.main(input_defaut)
+        branche_solution, Nbr_total_noeuds_explores, temps = BFS_algo.main(input_defaut)
     elif algo=='DFS':
-        branche_solution,Nbr_total_noeuds_explores=DFS_algo.main(input_defaut)
+        branche_solution,Nbr_total_noeuds_explores, temps=DFS_algo.main(input_defaut)
 
 
     etapes_solution = len(branche_solution) - 1
@@ -121,6 +121,8 @@ def solve(algo):
     print(tiret + tiret + croisement_droit, 'FIN Rech {} | {}+1 noeuds explorés en total | chemin_solution-solution ci-dessus'.format(algo,Nbr_total_noeuds_explores-1),
           croisement_gauche + tiret + tiret)
     # Fin Affichage terminal.
+
+    # Interface graphique
     mainWindow.destroy()
     # créer la fenetre
     AstarWindow = tk.Tk()
@@ -146,7 +148,16 @@ def solve(algo):
         can2.create_image(30 + 200 * col, 30 + 200 * ligne, anchor=tk.NW, image=img[ListeT[i]])
 
     AstarWindow.mainloop()
+    # FIN Interface graphique
 
+    # Générer un fichier de sortie pour le système de comparaison
+    file = open(algo + ' OutPut.txt', 'w')
+    file.write("chemin-solution vers le but: " + str(list(i['operation'] for i in branche_solution[1 : :])) + "\n")
+    file.write("coût du chemin-solution: " + str(etapes_solution) + "\n")
+    file.write("total de nœuds explorés/développés à la fin de l'exécution: " + str(Nbr_total_noeuds_explores) + "\n")
+    file.write("temps d'exécution: " + format(time, '.8f') + "\n")
+    file.close()
+    # FIN fichier de sortie
 #main main main
 
 #Tkinter graphic interface
@@ -167,9 +178,7 @@ for i in range(9):
 
 #Initialisation de la zone Canvas, placer les images de l'input par defaut dans la zone Canvas
 
-input_defaut = [[1, 2, 3],
-                    [8, 6, 0],
-                    [7, 5, 4]]
+input_defaut = [[1, 2, 3], [8, 6, 4], [7, 5, 0]]
 
 for i in range(9) :
     ListeT = list(i for j in input_defaut for i in j)

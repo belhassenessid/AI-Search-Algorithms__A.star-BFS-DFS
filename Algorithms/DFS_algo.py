@@ -1,9 +1,8 @@
 from copy import deepcopy
+import timeit,time
 
 etat_final = [[1, 2, 3], [8, 0, 4], [7, 6, 5]]  # etat but, soit le 0 qui symbolise la case vide
 operateurs_de_transformations = {"U" : [-1, 0], "D" : [1, 0], "L" : [0, -1], "R" : [0, 1]}
-
-
 # + l'état initial sera entré dans le module Main.py, le test but est implémenté ci-dessus dans la fonction main()
 
 # Définissons une classe taquin (noeud), caractérisée par sa matrice de valeurs, la matrice du taquin antécédent et l'operation resultante
@@ -27,7 +26,7 @@ def coordonnees(taquin, cellule) :
 def appliquer_operations(taquin, open, closed) :
     pos_vide = coordonnees(taquin.matrice_courante, 0)
 
-    for operation in reversed(operateurs_de_transformations.keys() ):#on inverse la liste des threads pour respecter le LIFO
+    for operation in reversed(operateurs_de_transformations.keys() ):#on inverse la liste pour respecter le LIFO
         new_pos = (pos_vide[0] + operateurs_de_transformations[operation][0],
                    pos_vide[1] + operateurs_de_transformations[operation][1])
         if 0 <= new_pos[0] < 3 and 0 <= new_pos[1] < 3 :  # Vérifier la possibilité d'opération
@@ -68,6 +67,8 @@ def chemin_solution(
 
 def main(puzzle_initial) :  # input == matrice (liste de 3 listes de 3 entiers entre 0 et 8)
 
+    start_algo=timeit.default_timer() #commencer de compter le temps d'exe
+
     # Soit l'open_liste qui stocke les noeuds à traiter, en commençant par le t initial.
     # un dictionnaire sous la forme {clé0:valeur0,...} avec str(matrice) comme clé, un Objet Taquin comme valeur
     # Un dict Python peut servir de File et aussi de Pile, dans cet algo on le traite comme une Pile (LIFO)
@@ -83,14 +84,12 @@ def main(puzzle_initial) :  # input == matrice (liste de 3 listes de 3 entiers e
         closed_liste[
             str(taquin_a_traiter.matrice_courante)] = taquin_a_traiter  # II. ajouter ce taquin à la liste closed
         if taquin_a_traiter.matrice_courante == etat_final :  # III. Test-but
-            return chemin_solution(closed_liste), len(closed_liste)-1
+            stop_algo=timeit.default_timer()
+            time=start_algo-stop_algo
+            return chemin_solution(closed_liste), len(closed_liste), time #chemin,noeuds explorés,temps
 
         appliquer_operations(taquin_a_traiter, open_liste,
                              closed_liste)  # IV. étendre ce taquin père dans une Liste_fils
 
         # VI. Supprimer le taquin père (taquin_a_traiter) de la liste open
         del open_liste[str(taquin_a_traiter.matrice_courante)]
-
-
-
-
