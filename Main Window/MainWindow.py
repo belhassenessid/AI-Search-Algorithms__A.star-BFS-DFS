@@ -180,7 +180,7 @@ for i in range(9) :
 
 menu = tk.Menu(mainWindow)
 menu.add_command(label="Mélanger", command=melanger)
-menu.add_command(label="Résolution DFS", command=None)
+menu.add_command(label="Résolution DFS", command=DFS)
 menu.add_command(label="Résolution BFS", command=BFS)
 menu.add_command(label="Résolution A*", command=A_star)
 mainWindow.config(menu=menu)
