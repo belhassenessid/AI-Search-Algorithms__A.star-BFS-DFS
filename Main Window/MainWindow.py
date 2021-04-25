@@ -1,4 +1,4 @@
-from Algorithms import A_star_algo, BFS_algo
+from Algorithms import A_star_algo, BFS_algo, DFS_algo
 import tkinter  as tk
 from random import shuffle
 from colorama import Fore, Back, Style  # Fore et Back pour colorer l'écriture et son font, Style à son style
@@ -81,6 +81,8 @@ def next():
                 texte.insert(tk.END,"C'est le nœud {}/{} du chemin_solution-solution ||\n{}+1 nœuds à explorer au total pour arriver au but".format(n, etapes_solution, Nbr_total_noeuds_explores))
                 texte.pack(side=tk.LEFT)
             can2.create_image(30 + 200 * col, 30 + 200 * ligne, anchor=tk.NW, image=img[ListeT[i]])
+def DFS():
+    solve('DFS')
 def BFS():
     solve('BFS')
 def A_star():
@@ -93,7 +95,10 @@ def solve(algo):
         branche_solution, Nbr_total_noeuds_explores = A_star_algo.main(input_defaut)
     elif algo=='BFS':
         branche_solution, Nbr_total_noeuds_explores = BFS_algo.main(input_defaut)
-        Nbr_total_noeuds_explores-=1
+    elif algo=='DFS':
+        branche_solution,Nbr_total_noeuds_explores=DFS_algo.main(input_defaut)
+
+
     etapes_solution = len(branche_solution) - 1
     # Affichage dans le terminal
     print('Chemin-solution de {} noeuds', etapes_solution + 1, end='\n')
