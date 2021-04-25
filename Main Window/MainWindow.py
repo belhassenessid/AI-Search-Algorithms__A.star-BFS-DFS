@@ -81,7 +81,7 @@ def solve(algo):
     # importer les images dans une liste d'objets tkinter.PhotoImage
     img = []
     for i in range(9) :
-        img.append(tk.PhotoImage(file="./img/" + str(i) + ".png"))
+        img.append(tk.PhotoImage(file="../img/" + str(i) + ".png"))
     #Noeud && noeud_suivant
     tk.Button(text='-Nœud-solution suivant->', font=("Courier New",11,'bold'), fg='green', relief=tk.FLAT, command=noeud_suivant).pack(side=tk.RIGHT)
     texte=tk.Text(font=("Courier New", 11),fg='white',bg='black',border=0,padx=10,width=60,height=3)
@@ -123,11 +123,13 @@ can.pack(side =tk.BOTTOM)
 #importer les images dans une liste d'objets tkinter.PhotoImage
 img=[]
 for i in range(9):
-        img.append(tk.PhotoImage(file="./img/"+str(i)+".png"))
+        img.append(tk.PhotoImage(file="../img/"+str(i)+".png"))
 
 #Initialisation de la zone Canvas, placer les images de l'input par defaut dans la zone Canvas
 
-input_defaut = [[1, 2, 3], [8, 6, 4], [7, 5, 0]]
+input_defaut = [[8, 4, 2],
+                [5, 6, 1],
+                [3, 0, 7]]
 
 for i in range(9) :
     ListeT = list(i for j in input_defaut for i in j)

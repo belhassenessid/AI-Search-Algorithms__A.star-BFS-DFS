@@ -1,4 +1,4 @@
-chemin-solution vers le BUT: ['R', 'U', 'L', 'U', 'R', 'D', 'R', 'D', 'L', 'L', 'U', 'R', 'R', 'U', 'L', 'D', 'D', 'L', 'U', 'U', 'R', 'D']
-cout du chemin-solution (steps): 22
-total de noeuds explores/developpes a la fin de l'execution: 251
-temps d'execution: -0.01239110
+chemin-solution vers le BUT: ['R', 'U', 'L', 'L', 'D', 'R', 'R', 'U', 'L', 'D', 'R', 'U', 'U', 'L', 'D', 'L', 'U', 'R', 'D', 'R', 'U', 'L', 'D']
+cout du chemin-solution (steps): 23
+total de noeuds explores/developpes a la fin de l'execution: 1464
+temps d'execution: 0.07343370
