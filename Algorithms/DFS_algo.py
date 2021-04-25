@@ -1,5 +1,5 @@
 from copy import deepcopy
-import timeit,time
+import time
 
 etat_final = [[1, 2, 3], [8, 0, 4], [7, 6, 5]]  # etat but, soit le 0 qui symbolise la case vide
 operateurs_de_transformations = {"U" : [-1, 0], "D" : [1, 0], "L" : [0, -1], "R" : [0, 1]}
@@ -67,7 +67,7 @@ def chemin_solution(
 
 def main(puzzle_initial) :  # input == matrice (liste de 3 listes de 3 entiers entre 0 et 8)
 
-    start_algo=timeit.default_timer() #commencer de compter le temps d'exe
+    start_algo=time.clock() #commencer de compter le temps d'exe
 
     # Soit l'open_liste qui stocke les noeuds à traiter, en commençant par le t initial.
     # un dictionnaire sous la forme {clé0:valeur0,...} avec str(matrice) comme clé, un Objet Taquin comme valeur
@@ -86,7 +86,7 @@ def main(puzzle_initial) :  # input == matrice (liste de 3 listes de 3 entiers e
         if taquin_a_traiter.matrice_courante == etat_final :  # III. Test-but
             stop_algo=timeit.default_timer()
             time=start_algo-stop_algo
-            return chemin_solution(closed_liste), len(closed_liste), time #chemin,noeuds explorés,temps
+            return chemin_solution(closed_liste), len(closed_liste), format(time, '.8f') #chemin,noeuds explorés,temps
 
         appliquer_operations(taquin_a_traiter, open_liste,
                              closed_liste)  # IV. étendre ce taquin père dans une Liste_fils

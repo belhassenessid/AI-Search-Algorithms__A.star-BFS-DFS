@@ -114,7 +114,7 @@ def main(puzzle_initial) : #input == matrice (liste de 3 listes de 3 entiers ent
         if taquin_a_traiter.matrice_courante == etat_final : #III. Test-but
             stop_algo=timeit.default_timer()
             time=start_algo-stop_algo
-            return chemin_solution(closed_liste), len(open_liste)-1+len(closed_liste), time #chemin,noeuds explorés,temps
+            return chemin_solution(closed_liste), len(open_liste)-1+len(closed_liste), format(time, '.8f') #chemin,noeuds explorés,temps
 
         appliquer_operations(taquin_a_traiter,open_liste,closed_liste) #IV. étendre ce taquin père dans open
         
