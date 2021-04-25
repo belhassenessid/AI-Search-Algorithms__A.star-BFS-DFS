@@ -1,7 +1,6 @@
 from Algorithms import A_star_algo, BFS_algo, DFS_algo
 import tkinter  as tk
 from random import shuffle
-#from colorama import Fore, Back, Style  # Fore et Back pour colorer l'écriture et son font, Style à son style
 
 # Une mainWindow est définie dans le programme principal, elle affiche l'entrée par défaut [0..8] qui peut
 # être mélangée avec le bouton (Mélanger), puis vous choisissez l'algorithme de recherche à appliquer, vous cliquez sur
