@@ -58,9 +58,10 @@ def appliquer_operations(taquin,open,closed) :
                 #il ne sert à rien de traiter un taquin t si:
                     #c1. il est déjà traités (se trouve dans closed_liste) -peut déclencher une boucle infinie-
                     #c2. il y a un taquin de même matrice que t qui sera traitée (se trouve deja dans open_liste), mais de meilleur f(n) que t.
+            g,h=taquin.g+1, cout_heuristique(new_matrix)
             if not ( str(new_matrix) in closed.keys() or \
-            str(new_matrix) in open.keys() and open[str(new_matrix)].f() < taquin.f() ) :
-                open[str(new_matrix)] = Taquin(new_matrix, taquin.matrice_courante,taquin.g+1,cout_heuristique(new_matrix), operation)
+            str(new_matrix) in open.keys() and open[str(new_matrix)].f() < h+g ) :
+                open[str(new_matrix)] = Taquin(new_matrix, taquin.matrice_courante,g,h, operation)
 
 
 # Définissons une fonction qui renvoie le meilleur taquin de l'ensemble des taquins fils -meilleur c.-à-d plus petite f(n)=g(n)+h(n)
