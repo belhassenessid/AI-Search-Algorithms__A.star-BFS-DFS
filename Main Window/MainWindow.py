@@ -19,7 +19,7 @@ def melanger():
     for i in range(9) :
         ListeT = list(i for j in input_defaut for i in j)
         ligne, col = i // 3, i % 3
-        can.create_image(30 + 200 * col, 30 + 200 * ligne, anchor=tk.NW, image=img[ListeT[i]])
+        can.create_image(30 + 110 * col, 30 + 110 * ligne, anchor=tk.NW, image=img[ListeT[i]])
 
 def noeud_suivant():
     global n
@@ -33,25 +33,26 @@ def noeud_suivant():
             ligne, col = i // 3, i % 3
             if n==etapes_solution:
                 texte.delete("1.0", tk.END)
-                texte.insert(tk.END,"FIN, C'est le dernier nœud BUT {}/{} du chemin_solution ||\n{}+1 total de nœuds explorés à la fin de l'exécution".format(n, etapes_solution+1, Nbr_total_noeuds_explores))
+                texte.insert(tk.END,"FIN! Voilà le dernier nœud {}/{} BUT (trouvez les détails dans le fichier {}_OutPut.txt)".format(n, etapes_solution+1,algorith))
                 texte['fg']='green'
-                texte.pack(side=tk.LEFT)
+                texte.pack()
             else:
                 texte.delete("1.0", tk.END)
                 texte.insert(tk.END,"C'est le nœud {}/{} du chemin_solution ||\n{}+1 nœuds à explorer au total pour arriver au but".format(n, etapes_solution+1, Nbr_total_noeuds_explores))
-                texte.pack(side=tk.LEFT)
-            can2.create_image(30 + 200 * col, 30 + 200 * ligne, anchor=tk.NW, image=img[ListeT[i]])
+                texte.pack()
+            can2.create_image(30 + 110 * col, 30 + 110 * ligne, anchor=tk.NW, image=img[ListeT[i]])
 def DFS():
     solve('DFS')
 def BFS():
     solve('BFS')
 def A_star():
-    solve('A*')
+    solve('A_star')
 
 def solve(algo):
-    global branche_solution, etapes_solution, img, can2, texte, n, Nbr_total_noeuds_explores
+    global branche_solution, etapes_solution, img, can2, texte, n, Nbr_total_noeuds_explores,algorith
     n=0
-    if algo=='A*':
+    algorith=algo
+    if algo=='A_star':
         branche_solution, Nbr_total_noeuds_explores, temps = A_star_algo.main(input_defaut)
     elif algo=='BFS':
         branche_solution, Nbr_total_noeuds_explores, temps = BFS_algo.main(input_defaut)
@@ -72,11 +73,11 @@ def solve(algo):
     mainWindow.destroy()
     # créer la fenetre
     AstarWindow = tk.Tk()
-    AstarWindow['bg'] = 'black'
+    AstarWindow['bg'] = 'white'
     AstarWindow.title('IA - Algo {}'.format(algo))
-    AstarWindow.geometry("800x700+300+0")
+    AstarWindow.geometry("440x500-400-150")
     # créer une zone Canvas destinée à placer les images des cases
-    can2 = tk.Canvas(height=600, width=600, bg='black')
+    can2 = tk.Canvas(height=380, width=380, bg='ghost white')
     can2.pack(side=tk.BOTTOM)
     can2.pack()
     # importer les images dans une liste d'objets tkinter.PhotoImage
@@ -84,23 +85,27 @@ def solve(algo):
     for i in range(9) :
         img.append(tk.PhotoImage(file="../img/" + str(i) + ".png"))
     #Noeud && noeud_suivant
-    tk.Button(text='-Nœud-solution suivant->', font=("Courier New",11,'bold'), fg='green', relief=tk.FLAT, command=noeud_suivant).pack(side=tk.RIGHT)
-    texte=tk.Text(font=("Courier New", 11),fg='white',bg='black',border=0,padx=10,width=60,height=3)
-    texte.insert(tk.END, "C'est le nœud initial 1/{} du chemin_solution-solution ||\n{}+1 nœuds à explorer au total pour arriver au but".format(etapes_solution, Nbr_total_noeuds_explores))
-    texte.pack(side=tk.LEFT)
+    tex = tk.Text(font=("Arial", 10, "bold"), fg='black', bg='white', border=0, padx=10, width=60, height=3)
+    tex.insert(tk.END,
+                 "Coût du chemin-solution(steps): {}\nTotal des nœuds explorés à la fin de l'exécution: {}\nTemps d'exécution: {}".format(
+                     etapes_solution, Nbr_total_noeuds_explores, temps))
+    tex.pack()
+    texte=tk.Text(font=("Arial", 10,"bold"),fg='black',bg='white',border=0,padx=10,width=60,height=2)
+    texte.insert(tk.END, "Parcourez le chemin-solution en cliquant sur le bouton 'Nœud-solution suivant' (trouvé aussi dans un fichier {}_OutPut.txt)".format(algo))
+    texte.pack()
+    tk.Button(text='-Nœud-solution suivant->', font=("Courier New", 11, 'bold'), fg='green', relief=tk.FLAT,
+              command=noeud_suivant).pack()
+
     for i in range(9) :
         ListeT = list(i for j in branche_solution[0]['taquin'] for i in j)
         ligne, col = i // 3, i % 3
-        can2.create_image(30 + 200 * col, 30 + 200 * ligne, anchor=tk.NW, image=img[ListeT[i]])
+        can2.create_image(30 + 110 * col, 30 + 110 * ligne, anchor=tk.NW, image=img[ListeT[i]])
 
     AstarWindow.mainloop()
     # FIN Interface graphique
 
     # Générer un fichier de sortie pour la comparaison
-    if algo == 'A*' :
-        file = open('A_star_OutPut.txt', 'a')
-    else :
-        file = open(algo + '_OutPut.txt', 'a')
+    file = open(algo + '_OutPut.txt', 'a')
     file.write("Taquin input: "+str(input_defaut)+"\t")
     file.write("->Taquin BUT: "+str(etat_final)+"\n")
     file.write("chemin-solution vers le BUT: " + str(list(i['operation'] for i in branche_solution[1 : :])) + "\n")
@@ -116,13 +121,14 @@ def solve(algo):
 #Tkinter graphic interface
 #créer la fenetre
 mainWindow = tk.Tk()
-mainWindow['bg']= 'black'
+mainWindow['bg']= 'white'
 mainWindow.title ('IA - jeu de taquin')
-mainWindow.geometry("700x700+300+0")
+mainWindow.geometry("440x500-400-150")
+tk.Label(text="Choisissez l'algorithme pour résoudre dans le menu ci-dessus.\nVous pouvez également mélanger le puzzle.",bg='white',width=50,height=5,font=("Arial",10,"bold")).pack(side=tk.TOP)
 
 #créer une zone Canvas destinée à placer les images des cases
-can=tk.Canvas(height=600, width=600, bg='black')
-can.pack(side =tk.BOTTOM)
+can=tk.Canvas(height=380, width=380, bg='ghost white')
+can.pack(side =tk.TOP)
 
 #importer les images dans une liste d'objets tkinter.PhotoImage
 img=[]
@@ -138,7 +144,7 @@ input_defaut = [[8, 4, 2],
 for i in range(9) :
     ListeT = list(i for j in input_defaut for i in j)
     ligne, col = i // 3, i % 3
-    afficher = can.create_image(30 + 200 * col, 30 + 200 * ligne, anchor=tk.NW, image=img[ListeT[i]])
+    afficher = can.create_image(30 + 110 * col, 30 + 110 * ligne, anchor=tk.NW, image=img[ListeT[i]])
 
 #Menu des Commandes résoudre et mélanger
 
