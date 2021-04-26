@@ -1,5 +1,4 @@
-# A_star_search_algo___puzzle_3by3
-
+# A* search algo
 ```
 Algorithme de recherche A* (matrice):
     0. Initialiser open_liste avec le taquin de la matrice d’entrée et closed_liste vide.
@@ -13,8 +12,9 @@ Algorithme de recherche A* (matrice):
             c2. il y a un taquin de même matrice que t qui sera traitée (se trouve deja dans open),mais de meilleur f(n) que t.
         5. Supprimer le taquin père de open_liste.
 ```
+# BFS search algo
 ```
-Algorithme de recherche BFD (matrice):
+Algorithme de recherche BFS (matrice):
     0. Initialiser open_file avec le taquin de la matrice d’entrée et closed_file vide.
     Répéter (open n’est pas vide):
         1. choisissez le taquin à développer/explorer (FIFO, la tete de la File open).
@@ -25,8 +25,9 @@ Algorithme de recherche BFD (matrice):
                -peut déclencher une boucle infinie-    
         5. Supprimer ce taquin père de open_file.
 ```
+# DFS search algo
 ```
-Algorithme de recherche DFD (matrice):
+Algorithme de recherche DFS (matrice):
     0. Initialiser open_pile avec le taquin de la matrice d’entrée et closed_pile vide.
     Répéter (open n’est pas vide):
         1. choisissez le taquin à développer/explorer (LIFO, la tete de la Pile open).
