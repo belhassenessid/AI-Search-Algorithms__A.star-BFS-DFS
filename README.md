@@ -1,4 +1,4 @@
-**Ce code est en cours d'optimisation vous trouverez les modules de test d'optimisation dans le dossier tests d'optimisation.**
+**Ce code est en cours d'optimisation vous trouverez les modules de test d'optimisation dans le dossier optimization_tests.**
 
 # A* search algo
 ```
