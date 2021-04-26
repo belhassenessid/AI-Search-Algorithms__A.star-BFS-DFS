@@ -12,7 +12,8 @@ Algorithme de recherche A* (matrice):
             c1. il a une matrice déjà traitée (se trouve dans closed_liste) -peut déclencher une boucle infinie-
             c2. il y a un taquin de même matrice que t qui sera traitée (se trouve deja dans open),mais de meilleur f(n) que t.
         5. Supprimer le taquin père de open_liste.
-
+```
+```
 Algorithme de recherche BFD (matrice):
     0. Initialiser open_file avec le taquin de la matrice d’entrée et closed_file vide.
     Répéter (open n’est pas vide):
@@ -23,7 +24,8 @@ Algorithme de recherche BFD (matrice):
             c1.il ne sert à rien de traiter un fils t s'il a une matrice déjà traitée (se trouve dans closed) 
                -peut déclencher une boucle infinie-    
         5. Supprimer ce taquin père de open_file.
-
+```
+```
 Algorithme de recherche DFD (matrice):
     0. Initialiser open_pile avec le taquin de la matrice d’entrée et closed_pile vide.
     Répéter (open n’est pas vide):
