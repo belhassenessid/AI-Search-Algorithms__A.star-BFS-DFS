@@ -2,17 +2,38 @@
 
 ```
 Algorithme de recherche A* (matrice):
-    0. Initialiser open avec le taquin de la matrice d’entrée et closed vide.
-    Répéter (open_list n’est pas vide):
-        1. choisissez le meilleur taquin à développer/explorer(le taquin avec le moins f(n)=g(n)+h(n) dans open_list).
-        2. Ajoutez ce taquin père à closed_liste.
+    0. Initialiser open_liste avec le taquin de la matrice d’entrée et closed_liste vide.
+    Répéter (open n’est pas vide):
+        1. choisissez le meilleur taquin à développer/explorer(le taquin avec le moins f(n)=g(n)+h(n) dans open_liste).
+        2. Ajoutez ce taquin père à closed.
         3. Test-but: si la matrice de ce taquin père == état final --> succès --> return(chemin-solution)
-        4. Étendez les fils de ce taquin choisi à open -avec conditions:
+        4. Étendez les fils de ce taquin choisi dans open -avec conditions:
             il ne sert à rien de traiter un fils t si:
             c1. il a une matrice déjà traitée (se trouve dans closed_liste) -peut déclencher une boucle infinie-
-            c2. il y a un taquin de même matrice que t qui sera traitée (se trouve deja dans open_liste),mais de meilleur f(n) que t.
+            c2. il y a un taquin de même matrice que t qui sera traitée (se trouve deja dans open),mais de meilleur f(n) que t.
         5. Supprimer le taquin père de open_liste.
 
+Algorithme de recherche BFD (matrice):
+    0. Initialiser open_file avec le taquin de la matrice d’entrée et closed_file vide.
+    Répéter (open n’est pas vide):
+        1. choisissez le taquin à développer/explorer (FIFO, la tete de la File open).
+        2. Ajoutez ce taquin père à closed.
+        3. Test-but: si la matrice de ce taquin père == état final --> succès --> return(chemin-solution)
+        4. Étendez les fils de ce taquin choisi dans open -avec condition:
+            c1.il ne sert à rien de traiter un fils t s'il a une matrice déjà traitée (se trouve dans closed) 
+               -peut déclencher une boucle infinie-    
+        5. Supprimer ce taquin père de open_file.
+
+Algorithme de recherche DFD (matrice):
+    0. Initialiser open_pile avec le taquin de la matrice d’entrée et closed_pile vide.
+    Répéter (open n’est pas vide):
+        1. choisissez le taquin à développer/explorer (LIFO, la tete de la Pile open).
+        2. Ajoutez ce taquin père à closed.
+        3. Test-but: si la matrice de ce taquin père == état final --> succès --> return(chemin-solution)
+        4. Étendez les fils de ce taquin choisi dans open -avec condition:
+            c1.il ne sert à rien de traiter un fils t s'il a une matrice déjà traitée (se trouve dans closed) 
+               -peut déclencher une boucle infinie-    
+        5. Supprimer ce taquin père de open_pile.
 ```
 **Avec:**
 .G le coût (steps), du taquin à l'état initial --> à l'état du taquin n.
@@ -21,8 +42,6 @@ Algorithme de recherche A* (matrice):
 
 .opération_appliquée dans {"Up", "Down", "Left", "Right"}
 
-.Objet Taquin(matrice, matrice_précédente, G, H, opération_appliquée)
+.open qui stocke les taquins à traiter, en commençant par le taquin initial donné.
 
-.open_liste qui stocke les taquins à traiter, en commençant par le taquin initial donné.
-
-.closed_liste qui stocke les taquins déjà choisis et traités.
+.closed qui stocke les taquins déjà choisis et traités.
