@@ -1,3 +1,5 @@
+**Ce code est en cours d'optimisation vous trouverez les modules de test d'optimisation dans le dossier tests d'optimisation.**
+
 # A* search algo
 ```
 Algorithme de recherche A* (matrice):
