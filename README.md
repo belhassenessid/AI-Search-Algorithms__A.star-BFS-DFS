@@ -19,7 +19,7 @@ Algorithme de recherche A* (matrice):
 Algorithme de recherche BFS (matrice):
     0. Initialiser open_file avec le taquin de la matrice d’entrée et closed_file vide.
     Répéter (open n’est pas vide):
-        1. choisissez le taquin à développer/explorer (FIFO, la tete de la File open).
+        1. sélectionnez le taquin à développer/explorer (FIFO, la tete de la File open).
         2. Ajoutez ce taquin père à closed.
         3. Test-but: si la matrice de ce taquin père == état final --> succès --> return(chemin-solution)
         4. Étendez les fils de ce taquin choisi dans open -avec condition:
@@ -32,7 +32,7 @@ Algorithme de recherche BFS (matrice):
 Algorithme de recherche DFS (matrice):
     0. Initialiser open_pile avec le taquin de la matrice d’entrée et closed_pile vide.
     Répéter (open n’est pas vide):
-        1. choisissez le taquin à développer/explorer (LIFO, la tete de la Pile open).
+        1. sélectionnez le taquin à développer/explorer (LIFO, la tete de la Pile open).
         2. Ajoutez ce taquin père à closed.
         3. Test-but: si la matrice de ce taquin père == état final --> succès --> return(chemin-solution)
         4. Étendez les fils de ce taquin choisi dans open -avec condition:
