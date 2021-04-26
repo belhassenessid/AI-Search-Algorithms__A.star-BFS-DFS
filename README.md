@@ -38,7 +38,11 @@ Algorithme de recherche DFS (matrice):
                -peut déclencher une boucle infinie-    
         5. Supprimer ce taquin père de open_pile.
 ```
+
+**Remarque** Une simple list, dict ou tuple en Python peut également servir de File (FIFO) et de Pile (LIFO).
+
 **Avec:**
+
 .G le coût (steps), du taquin à l'état initial --> à l'état du taquin n.
 
 .H (heuristique) le coût estimé, du taquin n --> au taquin de l'etat final (calculé par la "distance de Manhattan") 
