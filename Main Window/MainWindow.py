@@ -1,4 +1,5 @@
 from Algorithms import A_star_algo, BFS_algo, DFS_algo
+from Algorithms.A_star_algo import etat_final
 import tkinter  as tk
 from random import shuffle
 
@@ -97,13 +98,16 @@ def solve(algo):
 
     # Générer un fichier de sortie pour la comparaison
     if algo == 'A*' :
-        file = open('A_star_OutPut.txt', 'w')
+        file = open('A_star_OutPut.txt', 'a')
     else :
-        file = open(algo + '_OutPut.txt', 'w')
+        file = open(algo + '_OutPut.txt', 'a')
+    file.write("Taquin input: "+str(input_defaut)+"\t")
+    file.write("->Taquin BUT: "+str(etat_final)+"\n")
     file.write("chemin-solution vers le BUT: " + str(list(i['operation'] for i in branche_solution[1 : :])) + "\n")
     file.write("cout du chemin-solution (steps): " + str(etapes_solution) + "\n")
     file.write("total de noeuds explores/developpes a la fin de l'execution: " + str(Nbr_total_noeuds_explores) + "\n")
-    file.write("temps d'execution: " + temps + "\n")
+    file.write("temps d'execution: " + temps + "\n\n")
+    file.write("++++++++++++++++++"+"\n\n")
     file.close()
     # FIN fichier de sortie
 
