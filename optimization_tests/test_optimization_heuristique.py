@@ -48,5 +48,5 @@ def New_cout_heuristique(node):
 
 
 #### TEST TEST
-print(timeit.timeit("New_cout_heuristique([1,2,3,8,0,4,7,6,5])", "from __main__ import New_cout_heuristique", number=145))
-print(timeit.timeit("cout_heuristique([[1,2,3],[8,0,4],[7,6,5]])", "from __main__ import cout_heuristique", number=145))
+print(timeit.timeit("New_cout_heuristique([1,2,3,8,0,4,7,6,5])", "from __main__ import New_cout_heuristique", number=17000))
+print(timeit.timeit("cout_heuristique([[1,2,3],[8,0,4],[7,6,5]])", "from __main__ import cout_heuristique", number=17000))

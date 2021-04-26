@@ -1,9 +1,7 @@
 from copy import deepcopy
 import timeit
 
-etat_final = [[1, 2, 3],
-              [8, 0, 4],
-              [7, 6, 5]]  # etat but, soit le 0 qui symbolise la case vide
+etat_final = [[1, 2, 3], [8, 0, 4], [7, 6, 5]]  # etat but, soit le 0 qui symbolise la case vide
 operateurs_de_transformations = {"U" : [-1, 0], "D" : [1, 0], "L" : [0, -1], "R" : [0, 1]}
 # + l'état initial sera entré dans le module MainWindow.py, le test but est implémenté ci-dessus dans la fonction main()
 
@@ -108,7 +106,7 @@ def main(puzzle_initial) : #input == matrice (liste de 3 listes de 3 entiers ent
     #Soit le close_liste qui stocke les taquins déjà choisis et traités
     closed_liste = {}
 
-    #print(open_liste)
+    #print("initial ",open_liste.keys(),"**",closed_liste.keys())
     while True :
         taquin_a_traiter = meilleur_taquin(open_liste) #I. choisir le taquin à étendre, pour continuer dans cette branche_solution du meilleur f(n)
         closed_liste[str(taquin_a_traiter.matrice_courante)] = taquin_a_traiter #II. ajouter ce taquin à la liste closed
@@ -122,4 +120,7 @@ def main(puzzle_initial) : #input == matrice (liste de 3 listes de 3 entiers ent
         
         #V. Supprimer le taquin père (taquin_a_traiter) de la liste open
         del open_liste[str(taquin_a_traiter.matrice_courante)]
-        #print(open_liste.keys(), "**", open_liste.values())
+        #print(open_liste.keys(), "**", closed_liste.keys())
+
+
+#print(timeit.timeit("main([[1, 2, 3], [8, 6, 4], [7, 5, 0]])","from __main__ import main",number=1000))
