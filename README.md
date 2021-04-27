@@ -40,7 +40,6 @@ Algorithme de recherche DFS (matrice):
                -peut déclencher une boucle infinie-    
         5. Supprimer ce taquin père de open_pile.
 ```
-**comparison of algorithm performance https://docs.google.com/document/d/1bP-Ar-j6OXqbPZlXEnby-CGs3dwjKRMvzCe29feF4Xw/edit?usp=sharing**
 
 **Remarque** Une simple list, dict ou tuple en Python peut également servir de File (FIFO) et de Pile (LIFO).
 
