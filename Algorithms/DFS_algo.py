@@ -23,8 +23,7 @@ def coordonnees(taquin, cellule) :
             return (ligne, taquin[ligne].index(cellule))
 
 
-# Définissons une fonction qui renvoie une liste des nouveaux états des taquins après avoir appliqué toutes les opérations possibles {U,D,R,L} sur un taquin donné
-# operations(taquin_père) --> liste(taquins_fils)
+#Définissons une fonction qui insere les fils de t dans open après avoir appliqué toutes les opérations possibles {U,D,R,L}
 def appliquer_operations(taquin, open, closed) :
     pos_vide = coordonnees(taquin.matrice_courante, 0)
 

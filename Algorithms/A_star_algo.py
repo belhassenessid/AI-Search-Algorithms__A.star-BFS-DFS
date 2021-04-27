@@ -41,10 +41,8 @@ def cout_heuristique(etat_courant) :
                 cout += abs(ligne - ligne_final) + abs(col - col_final)  # Formule de distance de Manhattan
     return cout
 
-#Définissons une fonction qui renvoie une liste des nouveaux états des taquins après avoir appliqué toutes les opérations possibles {U,D,R,L} sur un taquin donné
-# operations(taquin_père) --> liste(taquins_fils)
+#Définissons une fonction qui insere les fils de t dans open après avoir appliqué toutes les opérations possibles {U,D,R,L}
 def appliquer_operations(taquin,open,closed) :
-    liste_taquins_transformes = []
     pos_vide = coordonnees(taquin.matrice_courante, 0)
 
     for operation in operateurs_de_transformations.keys() :
