@@ -25,7 +25,7 @@ def coordonnees(taquin, cellule) :
 def appliquer_operations(taquin,open,closed) :
     pos_vide = coordonnees(taquin.matrice_courante, 0)
 
-    for operation in operateurs_de_transformations.keys() :
+    for operation in operateurs_de_transformations:
         new_pos = ( pos_vide[0] + operateurs_de_transformations[operation][0], pos_vide[1] + operateurs_de_transformations[operation][1] )
         if 0 <= new_pos[0] < 3 and 0 <= new_pos[1] < 3 : # Vérifier la possibilité d'opération
             new_matrix = deepcopy(taquin.matrice_courante)
