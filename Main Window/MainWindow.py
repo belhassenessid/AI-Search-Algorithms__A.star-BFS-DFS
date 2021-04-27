@@ -33,12 +33,12 @@ def noeud_suivant():
             ligne, col = i // 3, i % 3
             if n==etapes_solution:
                 texte.delete("1.0", tk.END)
-                texte.insert(tk.END,"FIN! Voilà le dernier nœud {}/{} BUT (trouvez les détails dans le fichier {}_OutPut.txt)".format(n, etapes_solution+1,algorith))
+                texte.insert(tk.END,"FIN! Voilà le dernier nœud {}/{} BUT (Vous trouvez les détails\ndans le fichier {}_OutPut.txt)".format(n+1, etapes_solution+1,algorith))
                 texte['fg']='green'
                 texte.pack()
             else:
                 texte.delete("1.0", tk.END)
-                texte.insert(tk.END,"C'est le nœud {}/{} du chemin_solution ||\n{}+1 nœuds à explorer au total pour arriver au but".format(n, etapes_solution+1, Nbr_total_noeuds_explores))
+                texte.insert(tk.END,"Ci-dessous est le nœud {}/{} du chemin_solution".format(n+1, etapes_solution+1, Nbr_total_noeuds_explores))
                 texte.pack()
             can2.create_image(30 + 110 * col, 30 + 110 * ligne, anchor=tk.NW, image=img[ListeT[i]])
 def DFS():
@@ -65,9 +65,19 @@ def solve(algo):
     # Affichage dans le terminal
     print("chemin-solution vers le BUT: se trouve dans un fichier .txt cree apres cette execution && vous pouvez parcourir ce chemin dans l'interface graphique")
     print("cout du chemin-solution (steps): {}".format(etapes_solution))
-    print("total de noeuds explores/developpes a la fin de l'execution: {}".format(Nbr_total_noeuds_explores))
+    print("total de noeuds explores/developpes a la fin de l'execution: {} noeuds +1 noeud-initial".format(Nbr_total_noeuds_explores-1))
     print("temps d'execution: {}".format(temps))
     # FIN affichage dans le terminal
+
+    # Générer un fichier de sortie pour la comparaison
+    file = open(algo+'_OutPut.txt', 'a')
+    file.write("Chemin-solution: input-> "+str(branche_solution)+" <-BUT\n\n")
+    file.write("cout du chemin-solution (steps): "+str(etapes_solution)+"\n")
+    file.write("total de noeuds explores/developpes a la fin de l'execution: "+str(Nbr_total_noeuds_explores)+"\n")
+    file.write("temps d'execution: "+temps+"\n\n")
+    file.write("++++++++++++++++++"+"\n\n")
+    file.close()
+    # FIN fichier de sortie
 
     # Interface graphique
     mainWindow.destroy()
@@ -75,7 +85,7 @@ def solve(algo):
     AstarWindow = tk.Tk()
     AstarWindow['bg'] = 'white'
     AstarWindow.title('IA - Algo {}'.format(algo))
-    AstarWindow.geometry("440x500-400-150")
+    AstarWindow.geometry("520x560-400-150")
     # créer une zone Canvas destinée à placer les images des cases
     can2 = tk.Canvas(height=380, width=380, bg='ghost white')
     can2.pack(side=tk.BOTTOM)
@@ -85,16 +95,15 @@ def solve(algo):
     for i in range(9) :
         img.append(tk.PhotoImage(file="../img/" + str(i) + ".png"))
     #Noeud && noeud_suivant
-    tex = tk.Text(font=("Arial", 10, "bold"), fg='black', bg='white', border=0, padx=10, width=60, height=3)
-    tex.insert(tk.END,
-                 "Coût du chemin-solution(steps): {}\nTotal des nœuds explorés à la fin de l'exécution: {}\nTemps d'exécution: {}".format(
-                     etapes_solution, Nbr_total_noeuds_explores, temps))
-    tex.pack()
-    texte=tk.Text(font=("Arial", 10,"bold"),fg='black',bg='white',border=0,padx=10,width=60,height=2)
-    texte.insert(tk.END, "Parcourez le chemin-solution en cliquant sur le bouton 'Nœud-solution suivant' (trouvé aussi dans un fichier {}_OutPut.txt)".format(algo))
+
+    tk.Label(text="Total des nœuds explorés à la fin de l'exécution: {} noeuds +1 noeud-initial\nCoût du chemin-solution(steps): {}\nTemps d'exécution: {}".format(
+                     Nbr_total_noeuds_explores-1,etapes_solution, temps),bg='white',width=70,height=5,font=("Arial",10,"bold")).pack()
+
+    texte=tk.Text(font=("Arial", 10,"bold"),fg='black',bg='white',border=1,padx=10,width=60,height=3)
+    texte.insert(tk.END, "Ci-dessous est le neud initial.\nParcourez le chemin-solution en cliquant sur le bouton\n'Nœud suivant' (il se trouve aussi dans un fichier {}_OutPut.txt)".format(algo))
     texte.pack()
-    tk.Button(text='-Nœud-solution suivant->', font=("Courier New", 11, 'bold'), fg='green', relief=tk.FLAT,
-              command=noeud_suivant).pack()
+    tk.Button(text='Nœud suivant', font=("Arial", 11), fg='black',bg='ghost white', relief=tk.RAISED,
+              command=noeud_suivant).pack()#light pink
 
     for i in range(9) :
         ListeT = list(i for j in branche_solution[0]['taquin'] for i in j)
@@ -103,19 +112,6 @@ def solve(algo):
 
     AstarWindow.mainloop()
     # FIN Interface graphique
-
-    # Générer un fichier de sortie pour la comparaison
-    file = open(algo + '_OutPut.txt', 'a')
-    file.write("Taquin input: "+str(input_defaut)+"\t")
-    file.write("->Taquin BUT: "+str(etat_final)+"\n")
-    file.write("chemin-solution vers le BUT: " + str(list(i['operation'] for i in branche_solution[1 : :])) + "\n")
-    file.write("cout du chemin-solution (steps): " + str(etapes_solution) + "\n")
-    file.write("total de noeuds explores/developpes a la fin de l'execution: " + str(Nbr_total_noeuds_explores) + "\n")
-    file.write("temps d'execution: " + temps + "\n\n")
-    file.write("++++++++++++++++++"+"\n\n")
-    file.close()
-    # FIN fichier de sortie
-
 
 #MAIN WINDOW
 #Tkinter graphic interface
@@ -137,9 +133,9 @@ for i in range(9):
 
 #Initialisation de la zone Canvas, placer les images de l'input par defaut dans la zone Canvas
 
-input_defaut = [[8, 4, 2],
-                [5, 6, 1],
-                [3, 0, 7]]
+input_defaut = [[1, 2, 8],
+                [0, 7, 6],
+                [5, 4, 3]]
 
 for i in range(9) :
     ListeT = list(i for j in input_defaut for i in j)
