@@ -1,3 +1,5 @@
+**comparison of algorithm performance https://docs.google.com/document/d/1bP-Ar-j6OXqbPZlXEnby-CGs3dwjKRMvzCe29feF4Xw/edit?usp=sharing**
+
 **Ce code est en cours d'optimisation vous trouverez les modules de test d'optimisation dans le dossier optimization_tests.**
 
 # A* search algo
