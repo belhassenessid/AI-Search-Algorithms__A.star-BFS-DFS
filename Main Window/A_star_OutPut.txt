@@ -54,3 +54,11 @@ temps d'execution: 0.00040150
 
 ++++++++++++++++++
 
+Chemin-solution: input-> [{'operation': 'taquin initial sans opération de transformation', 'taquin': [[1, 2, 3], [8, 6, 0], [7, 5, 4]]}, {'operation': 'D', 'taquin': [[1, 2, 3], [8, 6, 4], [7, 5, 0]]}, {'operation': 'L', 'taquin': [[1, 2, 3], [8, 6, 4], [7, 0, 5]]}, {'operation': 'U', 'taquin': [[1, 2, 3], [8, 0, 4], [7, 6, 5]]}] <-BUT
+
+cout du chemin-solution (steps): 3
+total de noeuds explores/developpes a la fin de l'execution: 7
+temps d'execution: 0.00022700
+
+++++++++++++++++++
+
