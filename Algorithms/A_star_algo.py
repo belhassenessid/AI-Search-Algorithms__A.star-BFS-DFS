@@ -104,15 +104,17 @@ def main(puzzle_initial) : #input == matrice (liste de 3 listes de 3 entiers ent
 
     #Soit le close_liste qui stocke les taquins déjà choisis et traités
     closed_liste = {}
-
-    #print("initial ",open_liste.keys(),"**",closed_liste.keys())
+    i=0
     while True :
+        #test print("iter", i, " : open : ", open_liste.keys(), "** closed :", closed_liste.keys())
+        #test i+=1
         taquin_a_traiter = meilleur_taquin(open_liste) #I. choisir le taquin à étendre, pour continuer dans cette branche_solution du meilleur f(n)
         closed_liste[str(taquin_a_traiter.matrice_courante)] = taquin_a_traiter #II. ajouter ce taquin à la liste closed
 
         if taquin_a_traiter.matrice_courante == etat_final : #III. Test-but
             stop_algo=timeit.default_timer()
             time=stop_algo-start_algo
+            #TEST print("iter fin", i, " : open : ", open_liste.keys(), "** closed :", closed_liste.keys())
             return chemin_solution(closed_liste), len(open_liste)-1+len(closed_liste), format(time, '.8f') #chemin,noeuds explorés,temps
 
         appliquer_operations(taquin_a_traiter,open_liste,closed_liste) #IV. étendre ce taquin père dans open

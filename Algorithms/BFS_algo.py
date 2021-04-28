@@ -73,15 +73,17 @@ def main(puzzle_initial) : #input == matrice (liste de 3 listes de 3 entiers ent
 
     #Soit le close_liste qui stocke les taquins déjà choisis et traités
     closed_liste = {}
-
+    #test i=0
     while True :
-
+        #test print("iter", i, " : open : ", open_liste.keys(), "** closed :", closed_liste.keys())
+        #test i+=1
         taquin_a_traiter = list(open_liste.values())[0] #I. choisir le taquin à étendre (FIFO)
 
         closed_liste[str(taquin_a_traiter.matrice_courante)] = taquin_a_traiter #II. ajouter ce taquin à la liste closed
         if taquin_a_traiter.matrice_courante == etat_final :#III. Test-but
             stop_algo = timeit.default_timer()
             time = stop_algo-start_algo
+            # test print("iter fin", i, " : open : ", open_liste.keys(), "** closed :", closed_liste.keys())
             return chemin_solution(closed_liste), len(closed_liste), format(time, '.8f') #chemin,noeuds explorés,temps
 
         appliquer_operations(taquin_a_traiter,open_liste,closed_liste) #IV. étendre ce taquin père dans une Liste_fils

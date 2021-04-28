@@ -6,3 +6,35 @@ temps d'execution: 1.30385120
 
 ++++++++++++++++++
 
+Chemin-solution: input-> [{'operation': 'taquin initial sans opération de transformation', 'taquin': [[1, 2, 8], [0, 7, 6], [5, 4, 3]]}, {'operation': 'R', 'taquin': [[1, 2, 8], [7, 0, 6], [5, 4, 3]]}, {'operation': 'R', 'taquin': [[1, 2, 8], [7, 6, 0], [5, 4, 3]]}, {'operation': 'D', 'taquin': [[1, 2, 8], [7, 6, 3], [5, 4, 0]]}, {'operation': 'L', 'taquin': [[1, 2, 8], [7, 6, 3], [5, 0, 4]]}, {'operation': 'L', 'taquin': [[1, 2, 8], [7, 6, 3], [0, 5, 4]]}, {'operation': 'U', 'taquin': [[1, 2, 8], [0, 6, 3], [7, 5, 4]]}, {'operation': 'U', 'taquin': [[0, 2, 8], [1, 6, 3], [7, 5, 4]]}, {'operation': 'R', 'taquin': [[2, 0, 8], [1, 6, 3], [7, 5, 4]]}, {'operation': 'R', 'taquin': [[2, 8, 0], [1, 6, 3], [7, 5, 4]]}, {'operation': 'D', 'taquin': [[2, 8, 3], [1, 6, 0], [7, 5, 4]]}, {'operation': 'D', 'taquin': [[2, 8, 3], [1, 6, 4], [7, 5, 0]]}, {'operation': 'L', 'taquin': [[2, 8, 3], [1, 6, 4], [7, 0, 5]]}, {'operation': 'U', 'taquin': [[2, 8, 3], [1, 0, 4], [7, 6, 5]]}, {'operation': 'U', 'taquin': [[2, 0, 3], [1, 8, 4], [7, 6, 5]]}, {'operation': 'L', 'taquin': [[0, 2, 3], [1, 8, 4], [7, 6, 5]]}, {'operation': 'D', 'taquin': [[1, 2, 3], [0, 8, 4], [7, 6, 5]]}, {'operation': 'R', 'taquin': [[1, 2, 3], [8, 0, 4], [7, 6, 5]]}] <-BUT
+
+cout du chemin-solution (steps): 17
+total de noeuds explores/developpes a la fin de l'execution: 19182
+temps d'execution: 1.33178720
+
+++++++++++++++++++
+
+Chemin-solution: input-> [{'operation': 'taquin initial sans opération de transformation', 'taquin': [[3, 4, 1], [8, 6, 5], [2, 7, 0]]}, {'operation': 'U', 'taquin': [[3, 4, 1], [8, 6, 0], [2, 7, 5]]}, {'operation': 'U', 'taquin': [[3, 4, 0], [8, 6, 1], [2, 7, 5]]}, {'operation': 'L', 'taquin': [[3, 0, 4], [8, 6, 1], [2, 7, 5]]}, {'operation': 'L', 'taquin': [[0, 3, 4], [8, 6, 1], [2, 7, 5]]}, {'operation': 'D', 'taquin': [[8, 3, 4], [0, 6, 1], [2, 7, 5]]}, {'operation': 'D', 'taquin': [[8, 3, 4], [2, 6, 1], [0, 7, 5]]}, {'operation': 'R', 'taquin': [[8, 3, 4], [2, 6, 1], [7, 0, 5]]}, {'operation': 'U', 'taquin': [[8, 3, 4], [2, 0, 1], [7, 6, 5]]}, {'operation': 'R', 'taquin': [[8, 3, 4], [2, 1, 0], [7, 6, 5]]}, {'operation': 'U', 'taquin': [[8, 3, 0], [2, 1, 4], [7, 6, 5]]}, {'operation': 'L', 'taquin': [[8, 0, 3], [2, 1, 4], [7, 6, 5]]}, {'operation': 'D', 'taquin': [[8, 1, 3], [2, 0, 4], [7, 6, 5]]}, {'operation': 'L', 'taquin': [[8, 1, 3], [0, 2, 4], [7, 6, 5]]}, {'operation': 'U', 'taquin': [[0, 1, 3], [8, 2, 4], [7, 6, 5]]}, {'operation': 'R', 'taquin': [[1, 0, 3], [8, 2, 4], [7, 6, 5]]}, {'operation': 'D', 'taquin': [[1, 2, 3], [8, 0, 4], [7, 6, 5]]}] <-BUT
+
+cout du chemin-solution (steps): 16
+total de noeuds explores/developpes a la fin de l'execution: 7923
+temps d'execution: 0.38234820
+
+++++++++++++++++++
+
+Chemin-solution: input-> [{'operation': 'taquin initial sans opération de transformation', 'taquin': [[1, 2, 3], [8, 6, 0], [7, 5, 4]]}, {'operation': 'D', 'taquin': [[1, 2, 3], [8, 6, 4], [7, 5, 0]]}, {'operation': 'L', 'taquin': [[1, 2, 3], [8, 6, 4], [7, 0, 5]]}, {'operation': 'U', 'taquin': [[1, 2, 3], [8, 0, 4], [7, 6, 5]]}] <-BUT
+
+cout du chemin-solution (steps): 3
+total de noeuds explores/developpes a la fin de l'execution: 12
+temps d'execution: 0.00747550
+
+++++++++++++++++++
+
+Chemin-solution: input-> [{'operation': 'taquin initial sans opération de transformation', 'taquin': [[1, 2, 3], [8, 6, 0], [7, 5, 4]]}, {'operation': 'D', 'taquin': [[1, 2, 3], [8, 6, 4], [7, 5, 0]]}, {'operation': 'L', 'taquin': [[1, 2, 3], [8, 6, 4], [7, 0, 5]]}] <-BUT
+
+cout du chemin-solution (steps): 2
+total de noeuds explores/developpes a la fin de l'execution: 6
+temps d'execution: 0.00121840
+
+++++++++++++++++++
+
