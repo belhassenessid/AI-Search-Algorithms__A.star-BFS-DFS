@@ -79,9 +79,9 @@ def main(puzzle_initial) :  # input == matrice (liste de 3 listes de 3 entiers e
     closed_liste = {}
     #test i=0
     while True :
-        print("iter", i, " : open : ", open_liste.keys(), "** closed :", closed_liste.keys())
+        #test print("iter", i, " : open : ", open_liste.keys(), "** closed :", closed_liste.keys())
         #test i+=1
-        #test taquin_a_traiter = list(open_liste.values())[-1]  # I. choisir le taquin à étendre (LIFO)
+        taquin_a_traiter = list(open_liste.values())[-1]  # I. choisir le taquin à étendre (LIFO)
 
         closed_liste[
             str(taquin_a_traiter.matrice_courante)] = taquin_a_traiter  # II. ajouter ce taquin à la liste closed
